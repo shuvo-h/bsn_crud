@@ -11,7 +11,7 @@
     "photo": "https://cbsnews1.cbsistatic.com/hub/i/2015/07/01/0b059f60-344d-4ada-baae-e683aff3650a/istock000044051102large.jpg"
   },
   {
-    "title": "Food 1",
+    "title": "Food 2",
     "id": 2,
     "str": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, nemo.",
     "price": 20,
@@ -22,7 +22,7 @@
     "photo": "https://cbsnews1.cbsistatic.com/hub/i/2015/07/01/0b059f60-344d-4ada-baae-e683aff3650a/istock000044051102large.jpg"
   },
   {
-    "title": "Food 1",
+    "title": "Food 3",
     "id": 3,
     "str": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, nemo.",
     "price": 20,
@@ -33,7 +33,7 @@
     "photo": "https://cbsnews1.cbsistatic.com/hub/i/2015/07/01/0b059f60-344d-4ada-baae-e683aff3650a/istock000044051102large.jpg"
   },
   {
-    "title": "Food 1",
+    "title": "Food 4",
     "id": 4,
     "str": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, nemo.",
     "price": 20,
@@ -44,7 +44,7 @@
     "photo": "https://cbsnews1.cbsistatic.com/hub/i/2015/07/01/0b059f60-344d-4ada-baae-e683aff3650a/istock000044051102large.jpg"
   },
   {
-    "title": "Food 1",
+    "title": "Food 5",
     "id": 5,
     "str": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, nemo.",
     "price": 20,
