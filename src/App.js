@@ -14,6 +14,7 @@ import Breakfast from './components/Foods/Breakfast/Breakfast';
 import Dinner from './components/Foods/Dinner/Dinner';
 
 function App() {
+  const demovatr = "";
   return (
     <>
     <AuthProvider>
