@@ -15,6 +15,7 @@ import Dinner from './components/Foods/Dinner/Dinner';
 
 function App() {
   const demovatr = "";
+  const allstag = 878;
   return (
     <>
     <AuthProvider>
