@@ -1,79 +1,78 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
+import { ErrorRequestHandler, NextFunction, Request, Response } from 'express'
 
+import handleValidationError from '../../errors/handleValidationError'
 
-import handleValidationError from '../../errors/handleValidationError';
-
-import { Prisma } from '@prisma/client';
-import { ZodError } from 'zod';
-import handleClientError from '../../errors/handleClientError';
-import handleZodError from '../../errors/handleZodError';
-import { IGenericErrorMessage } from '../../interfaces/error';
-import { config } from '../../config/config';
-import ApiError from '../../errors/apiError';
+import { Prisma } from '@prisma/client'
+import { ZodError } from 'zod'
+import handleClientError from '../../errors/handleClientError'
+import handleZodError from '../../errors/handleZodError'
+import { IGenericErrorMessage } from '../../interfaces/error'
+import { config } from '../../config/config'
+import ApiError from '../../errors/apiError'
 
 const globalErrorHandler: ErrorRequestHandler = (
   error,
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   config.isProd
     ? console.error(`🐱‍🏍 globalErrorHandler ~~`, error)
-    : console.log(`🐱‍🏍 globalErrorHandler ~~`, { error });
+    : console.log(`🐱‍🏍 globalErrorHandler ~~`, { error })
 
-  let statusCode = 500;
-  let message = 'Something went wrong !';
-  let errorMessages: IGenericErrorMessage[] = [];
+  let statusCode = 500
+  let message = 'Something went wrong !'
+  let errorMessages: IGenericErrorMessage[] = []
 
   if (error instanceof Prisma.PrismaClientValidationError) {
-    const simplifiedError = handleValidationError(error);
-    statusCode = simplifiedError.statusCode;
-    message = simplifiedError.message;
-    errorMessages = simplifiedError.errorMessages;
+    const simplifiedError = handleValidationError(error)
+    statusCode = simplifiedError.statusCode
+    message = simplifiedError.message
+    errorMessages = simplifiedError.errorMessages
   } else if (error instanceof ZodError) {
-    const simplifiedError = handleZodError(error);
-    statusCode = simplifiedError.statusCode;
-    message = simplifiedError.message;
-    errorMessages = simplifiedError.errorMessages;
+    const simplifiedError = handleZodError(error)
+    statusCode = simplifiedError.statusCode
+    message = simplifiedError.message
+    errorMessages = simplifiedError.errorMessages
   } else if (error instanceof Prisma.PrismaClientKnownRequestError) {
-    const simplifiedError = handleClientError(error);
-    statusCode = simplifiedError.statusCode;
-    message = simplifiedError.message;
-    errorMessages = simplifiedError.errorMessages;
+    const simplifiedError = handleClientError(error)
+    statusCode = simplifiedError.statusCode
+    message = simplifiedError.message
+    errorMessages = simplifiedError.errorMessages
   } else if (error instanceof ApiError) {
-    statusCode = error?.statusCode;
-    message = error.message;
+    statusCode = error?.statusCode
+    message = error.message
     errorMessages = error?.message
       ? [
-        {
-          path: '',
-          message: error?.message,
-        },
-      ]
-      : [];
+          {
+            path: '',
+            message: error?.message,
+          },
+        ]
+      : []
   } else if (error instanceof Error) {
-    message = error?.message;
+    message = error?.message
     errorMessages = error?.message
       ? [
-        {
-          path: '',
-          message: error?.message,
-        },
-      ]
-      : [];
+          {
+            path: '',
+            message: error?.message,
+          },
+        ]
+      : []
   }
 
-  const finalMessage = errorMessages.map(el=>el.message).join(", ") || message
+  const finalMessage = errorMessages.map(el => el.message).join(', ') || message
 
   res.status(statusCode).json({
     success: false,
     message: finalMessage,
     errorMessages,
-    stack: config.isProd ?  undefined : error?.stack ,
-  });
-};
+    stack: config.isProd ? undefined : error?.stack,
+  })
+}
 
-export default globalErrorHandler;
+export default globalErrorHandler

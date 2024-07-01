@@ -1,5 +1,5 @@
-import { NextFunction, Request, Response } from 'express';
-import { AnyZodObject, ZodEffects } from 'zod';
+import { NextFunction, Request, Response } from 'express'
+import { AnyZodObject, ZodEffects } from 'zod'
 
 const validateRequest =
   (schema: AnyZodObject | ZodEffects<AnyZodObject>) =>
@@ -10,17 +10,17 @@ const validateRequest =
         query: req.query,
         params: req.params,
         cookies: req.cookies,
-      });
+      })
       // Replace original request data with validated data
-      req.body = validatedData.body;
-      req.query = validatedData.query;
-      req.params = validatedData.params;
-      req.cookies = validatedData.cookies;
+      req.body = validatedData.body
+      req.query = validatedData.query
+      req.params = validatedData.params
+      req.cookies = validatedData.cookies
 
-      return next();
+      return next()
     } catch (error) {
-      next(error);
+      next(error)
     }
-  };
+  }
 
-export default validateRequest;
+export default validateRequest
