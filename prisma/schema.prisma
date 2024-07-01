@@ -14,18 +14,16 @@ datasource db {
 }
 
 
-model User {
+model BsnUser {
   id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
+  code Int  @unique
+  status  Int
+  name String?
+  ic String?
+  phone_number String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@map("bsn_user")
 }
 
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  Int
-}

@@ -66,9 +66,11 @@ const globalErrorHandler: ErrorRequestHandler = (
       : [];
   }
 
+  const finalMessage = errorMessages.map(el=>el.message).join(", ") || message
+
   res.status(statusCode).json({
     success: false,
-    message,
+    message: finalMessage,
     errorMessages,
     stack: config.isProd ?  undefined : error?.stack ,
   });

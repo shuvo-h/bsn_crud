@@ -1,6 +1,5 @@
 import express, { Application, NextFunction, Request, Response } from 'express';
 import cors from 'cors';
-import cookieParser from 'cookie-parser';
 import httpStatus from 'http-status';
 
 import { config } from './config/config';
@@ -9,7 +8,6 @@ import globalErrorHandler from './app/middlewares/globalErrorHandler';
 const app: Application = express();
 
 app.use(cors({credentials:true,origin:['*',config.FRONTEND_BASE_URL]}));
-app.use(cookieParser(config.cookies.COOKIE_SIGN_SECRET));
 
 //parser
 app.use(express.json());

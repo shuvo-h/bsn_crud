@@ -17,6 +17,3 @@ export type IGenericErrorResponse = {
 };
 
 
-export type IAuthUser = {
-  userId: string;
-} | null
