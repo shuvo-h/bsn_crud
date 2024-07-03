@@ -1,0 +1,1 @@
+export const paginatinOptions = ['limit', 'page', 'sortBy', 'sortOrder']
